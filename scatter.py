@@ -9,26 +9,53 @@ EMAIL:
 """
 
 import argparse
-import numpy
-import matplotlib
+import numpy as np
+import matplotlib as plt
 
 
 parser = argparse.ArgumentParser( description=description )
 parser.add_argument(
-	"data_file",
+	"input_file",
 	help="path to the input data file (TSV format)",
 )
 parser.add_argument(
-	"--column",
+	"-x", "--xcol",
 	type=int,
 	default=1,
-	help="1-based index of the column to work on",
+	help="1-based index of the x-column to work on",
+)
+
+parser.add_argument(
+	"-y", "--ycol",
+	type=int,
+	default=1,
+	help="1-based index of the y-column to work on",
 )
 parser.add_argument(
-	"--stats",
-	choices=["mean", "median", "mode"],
-	nargs="+",
-	default=["mean"],
-	help="choice(s) of statistics to compute [default: mean]",
+	"-z", "--zcol",
+	type=int,
+	default=1,
+	help="1-based index of the z-column to work on",
 )
+
+parser.add_argument(
+	"-z", "--zcol",
+	type=int,
+	default=1,
+	help="1-based index of the z-column to work on",
+)
+
+parser.add_argument(
+	"-o", "--output_file",
+	help="path to the output data file (scatter plot)",
+)
+"""
+Need to add in another argument for the path to the output file.
+"""
 args = parser.parse_args( )
+
+fh = open(args.input_file)
+
+data= data.split("\t")
+
+x =
