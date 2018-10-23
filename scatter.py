@@ -54,26 +54,25 @@ fh = open(args.input_file)
 df = pd.read_csv(args.input_file, sep = '\t')
 headers = np.array(df.columns)  # get headers
 
-
-a = args.xcol -1
-b = args.ycol -1
-cc = args.strat -1
-
 row = []
 x1 = []
 y1 = []
 z1 = []
 
-df.groupby(headers[args.strat-1])
 for line in fh:
-    if "#" not in line: #removes the header row
-        row = line.strip().split("\t") #first split into individual rows
-        x1.append(float(row[args.xcol -1]))
-        y1.append(float(row[args.ycol -1]))
-        z1.append(str(row[args.strat -1]))
+	if "#" not in line:
+		row = line.strip().split("\t") #first split into individual rows
+		x1.append(row[args.xcol -1])
+		y1.append(row[args.ycol -1])
+		if args.strat:
+			z1.append(row[args.strat -1])
+
+if args.strat == None: # no filenames, just stdin
+	ax = sns.scatterplot(x = x1, y= y1)
+else:
+	ax = sns.scatterplot(x = x1, y= y1, hue = z1)
 
 
-ax = sns.scatterplot(x=x1, y = y1, hue = z1)
-plt.xlabel(headers[a])
-plt.ylabel(headers[b])
+plt.xlabel(headers[args.xcol - 1])
+plt.ylabel(headers[args.ycol - 1])
 plt.show()
