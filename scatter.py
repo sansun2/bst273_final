@@ -11,6 +11,7 @@ EMAIL:
 import argparse
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns; sns.set()
 import pandas as pd
 import seaborn
 
@@ -50,28 +51,29 @@ Need to add in another argument for the path to the output file.
 args = parser.parse_args( )
 
 fh = open(args.input_file)
-df = pd.read_csv(args.input_file, delimiter = '\t')
+df = pd.read_csv(args.input_file, sep = '\t')
 headers = np.array(df.columns)  # get headers
+
 
 a = args.xcol -1
 b = args.ycol -1
 cc = args.strat -1
 
 row = []
-x = []
-y = []
-z = []
+x1 = []
+y1 = []
+z1 = []
 
 df.groupby(headers[args.strat-1])
 for line in fh:
     if "#" not in line: #removes the header row
         row = line.strip().split("\t") #first split into individual rows
-        x.append(float(row[args.xcol -1]))
-        y.append(float(row[args.ycol -1]))
-        z.append(row[args.strat -1])
+        x1.append(float(row[args.xcol -1]))
+        y1.append(float(row[args.ycol -1]))
+        z1.append(str(row[args.strat -1]))
 
 
-plt.scatter(x,y, label = z)
+ax = sns.scatterplot(x=x1, y = y1, hue = z1)
 plt.xlabel(headers[a])
 plt.ylabel(headers[b])
 plt.show()
