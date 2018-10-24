@@ -62,8 +62,8 @@ z1 = []
 for line in fh:
 	if "#" not in line:
 		row = line.strip().split("\t") #first split into individual rows
-		x1.append(row[args.xcol -1])
-		y1.append(row[args.ycol -1])
+		x1.append(float(row[args.xcol -1]))
+		y1.append(float(row[args.ycol -1]))
 		if args.strat:
 			z1.append(row[args.strat -1])
 
