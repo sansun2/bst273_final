@@ -37,7 +37,7 @@ parser.add_argument(
 	"-strat", "--strat",
 	type=int,
 	default=None,
-	help="1-based index of the z-column to work on",
+	help="1-based index of the stratification to work on",
 )
 
 parser.add_argument(
@@ -67,14 +67,15 @@ for line in fh:
 if args.strat == None:
 	ax = sns.scatterplot(x = x1, y= y1)
 else:
-	ax = sns.scatterplot(x = x1, y= y1, hue = z1)
-
+	ax = sns.scatterplot(x = x1, y= y1, hue = z1, palette="muted")
+	plt.legend(loc='upper left', prop={'size':6},bbox_to_anchor=(1,1))
+	plt.tight_layout(pad=3)
 plt.xlabel(headers[args.xcol - 1])
 plt.ylabel(headers[args.ycol - 1])
 
 if args.output_file:
-	plt.savefig(args.output_file)
+	plt.savefig(args.output_file, bbox_inches="tight")
 else:
-	plt.savefig('default_scatter.png')
-
+	plt.savefig('default_scatter', format = "png", bbox_inches='tight')
+plt.subplots_adjust(bottom=0.2)
 plt.show()
