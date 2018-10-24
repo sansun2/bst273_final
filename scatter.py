@@ -12,6 +12,7 @@ import argparse
 import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()
 import pandas as pd
+import numpy as np
 
 parser = argparse.ArgumentParser( description="" )
 parser.add_argument(
@@ -43,9 +44,7 @@ parser.add_argument(
 	"-out", "--output_file",
 	help="path to the output data file (scatter plot)",
 )
-"""
-Need to add in another argument for the path to the output file.
-"""
+
 args = parser.parse_args( )
 
 fh = open(args.input_file)
@@ -76,6 +75,6 @@ plt.ylabel(headers[args.ycol - 1])
 if args.output_file:
 	plt.savefig(args.output_file)
 else:
-	plt.savefig('scatter.png')
+	plt.savefig('default_scatter.png')
 
 plt.show()
