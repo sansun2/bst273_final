@@ -4,16 +4,14 @@ BST 273 Final Project, 100 points
 =================================
 
 NAME: Sanjana Sundaresan
-EMAIL:
+EMAIL: ssundaresan@hsph.harvard.edu
 
 """
 
 import argparse
-import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()
 import pandas as pd
-import seaborn
 
 parser = argparse.ArgumentParser( description="" )
 parser.add_argument(
@@ -42,7 +40,7 @@ parser.add_argument(
 )
 
 parser.add_argument(
-	"-o", "--output_file",
+	"-out", "--output_file",
 	help="path to the output data file (scatter plot)",
 )
 """
@@ -67,12 +65,17 @@ for line in fh:
 		if args.strat:
 			z1.append(row[args.strat -1])
 
-if args.strat == None: # no filenames, just stdin
+if args.strat == None:
 	ax = sns.scatterplot(x = x1, y= y1)
 else:
 	ax = sns.scatterplot(x = x1, y= y1, hue = z1)
 
-
 plt.xlabel(headers[args.xcol - 1])
 plt.ylabel(headers[args.ycol - 1])
+
+if args.output_file:
+	plt.savefig(args.output_file)
+else:
+	plt.savefig('scatter.png')
+
 plt.show()
