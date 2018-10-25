@@ -64,7 +64,6 @@ parser.add_argument(
 )
 
 args = parser.parse_args( )
-
 fh = open(args.input_file)
 df = pd.read_csv(args.input_file, sep = '\t')
 headers = np.array(df.columns)  # get headers
@@ -75,20 +74,20 @@ y1 = []
 z1 = []
 
 #Iterate through the dataframe and store values for the 2 specific columns in individual lists.
+fh.readline()
 for line in fh:
-	if "#" not in line: #Ignore the header line
-		row = line.strip().split("\t") #first split the file into individual rows
-		x1.append(float(row[args.xcol -1])) #append x1 with values for the x-axis column
-		y1.append(float(row[args.ycol -1])) #append y1 with values for the y-axis column
-		if args.strat: #if a stratification column is mentioned
-			z1.append(row[args.strat -1]) #append z1 with values for stratification
+	row = line.strip().split("\t") #first split the file into individual rows
+	x1.append(float(row[args.xcol -1])) #append x1 with values for the x-axis column
+	y1.append(float(row[args.ycol -1])) #append y1 with values for the y-axis column
+	if args.strat: #if a stratification column is mentioned
+		z1.append(row[args.strat -1]) #append z1 with values for stratification
 
 #Conditional for plotting the graph
 if args.strat == None: #If the stratification column is not mentioned
 	ax = sns.scatterplot(x = x1, y= y1)
 else:
-	ax = sns.scatterplot(x = x1, y= y1, hue = z1, palette="muted") #Color of the plot assigned 
-	plt.legend(loc='upper left', prop={'size':6},bbox_to_anchor=(1,1))
+	ax = sns.scatterplot(x = x1, y= y1, hue = z1, palette="muted") #Assigning the color of the plot with the categorical variable
+	plt.legend(loc='upper left', prop={'size':8}, bbox_to_anchor=(1,1)) #Placing the legend outside the plot
 	plt.tight_layout(pad=3)
 
 #Default labels for the axes
@@ -111,6 +110,6 @@ else:
 if args.output_file:
 	plt.savefig(args.output_file, bbox_inches="tight")
 else:
-	plt.savefig('default_scatter', format = "png", bbox_inches='tight')
+	plt.savefig('default_scatter', bbox_inches='tight')
 plt.subplots_adjust(bottom=0.2)
 plt.show()
