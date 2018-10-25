@@ -79,9 +79,9 @@ for line in fh:
 
 #Conditional for plotting the graph
 if args.strat == None: #If the stratification column is not mentioned
-	ax = sns.scatterplot(x = x1, y= y1)
+	sns.scatterplot(x = x1, y= y1)
 else:
-	ax = sns.scatterplot(x = x1, y= y1, hue = z1, palette="muted") #Assigning the color of the plot with the categorical variable
+	sns.scatterplot(x = x1, y= y1, hue = z1, palette="muted") #Assigning the color of the plot with the categorical variable
 	plt.legend(loc='upper left', prop={'size':8}, bbox_to_anchor=(1,1)) #Placing the legend outside the plot
 	plt.tight_layout(pad=3)
 
