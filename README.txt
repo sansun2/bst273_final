@@ -9,7 +9,16 @@ ANSWER:
 
 3.	In a few sentences, describe what your final project script does.
 
-ANSWER: The script allows the user to specify 2 columns from a tsv file to plot as a scatter plot. The default option will plot the first 2 columns, and save the file as "default_scatter.png". 
+ANSWER: The script allows the user to specify 2 columns from a tsv file to plot as a scatter plot. The default option will plot the first 2 columns, and save the file as "default_scatter.png". The axes are labeled with the respective column headings. There are several flags that can be used to customize the plot.
+
+The flags are:
+-x: specifies the x values to be plotted
+-y: specified the y values to be plotted
+-strat : a column by which the plot can be stratified, identified by different colors. If not specified, the plot will contain a single series.
+-title: a title for the plot. Default- no title.
+-xlabel: customized label for the x-axis. Default- header of the x-axis column.
+-ylabel: customized label for the y-axis. Default- header of the y-axis column.
+-out: path to the output file. Default: file gets saved as default_scatter.png in the current working directory.
 
 4.	List any modules (outside of the Python standard library) that are required to execute your final project script. You may answer “N/A” if no such modules are required.
 
@@ -35,4 +44,4 @@ ANSWER: This is one of the best courses I have taken at HSPH. Eric and Kevin, th
 
 9.	What was your LEAST favorite part of learning to program in BST 273 (i.e. something we should look into changing for future incarnations of the course)?
 
-ANSWER:
+ANSWER: I didn't have any!

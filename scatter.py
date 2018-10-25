@@ -11,7 +11,11 @@ import argparse
 import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()
 
-parser = argparse.ArgumentParser( description="" )
+description = """
+A script to create a command line interface for plotting scatterplots in python.
+"""
+
+parser = argparse.ArgumentParser( description=description )
 parser.add_argument(
 	"input_file",
 	help="path to the input data file (TSV format)",
@@ -36,28 +40,32 @@ parser.add_argument(
 	default=None,
 	help="1-based index of the stratification column",
 )
+
 parser.add_argument(
 	"-title", "--title",
 	type=str,
 	default=None,
 	help="Title of the plot",
 )
+
 parser.add_argument(
 	"-xlabel", "--xlabel",
 	type=str,
 	default=None,
 	help="Label for the x-axis",
 )
+
 parser.add_argument(
 	"-ylabel", "-ylabel",
 	type=str,
 	default=None,
 	help="Label for the y-axis",
 )
+
 parser.add_argument(
 	"-out", "--output_file",
 	default = None,
-	help="path to the output data file (scatter plot)",
+	help="Path to the output data file (scatter plot)",
 )
 
 args = parser.parse_args( )
